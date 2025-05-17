@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My IIS Adventure: Battling ERR_CONNECTION_REFUSED</title>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:wght@400;700&family=Poppins:wght@400;600&family=Source+Code+Pro:wght@400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Lora', serif;
+            line-height: 1.8;
+            margin: 0;
+            padding: 30px;
+            background-color: #FFFFFF;
+            color: #2D3748;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: linear-gradient(180deg, #F8FAFC 0%, #E6F0FA 100%);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2, h3 {
+            font-family: 'Poppins', sans-serif;
+            color: #1B4D89;
+        }
+        h1 {
+            font-size: 2.2em;
+            text-align: center;
+            margin-bottom: 0.5em;
+        }
+        h2 {
+            font-size: 1.6em;
+            margin-top: 1.5em;
+        }
+        h3 {
+            font-size: 1.3em;
+            margin-top: 1.2em;
+        }
+        p, li {
+            font-size: 1.1em;
+            margin-bottom: 1em;
+        }
+        pre {
+            background: #F7FAFC;
+            padding: 15px;
+            border-left: 4px solid #F6AD55;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: 'Source Code Pro', monospace;
+            font-size: 0.95em;
+            color: #319795;
+            transition: transform 0.2s;
+        }
+        pre:hover {
+            transform: scale(1.01);
+        }
+        code {
+            color: #319795;
+            font-family: 'Source Code Pro', monospace;
+        }
+        a {
+            color: #319795;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        a:hover {
+            color: #F6AD55;
+            text-decoration: underline;
+        }
+        ul, ol {
+            padding-left: 25px;
+            margin-bottom: 1.5em;
+        }
+        li {
+            margin-bottom: 0.5em;
+        }
+        .author {
+            font-style: italic;
+            color: #5A6D6D;
+            text-align: center;
+            margin-bottom: 2em;
+            font-size: 0.95em;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 2em;
+            font-size: 0.9em;
+            color: #5A6D6D;
+        }
+        hr {
+            border: 0;
+            border-top: 1px solid #F6AD55;
+            margin: 2em 0;
+        }
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+            }
+            h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.4em;
+            }
+            h3 {
+                font-size: 1.1em;
+            }
+            pre:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>My IIS Adventure: Battling ERR_CONNECTION_REFUSED</h1>
+        <p class="author">By Shangari Chandramohan | May 17, 2025</p>
+
+        <h2>My Battle with ERR_CONNECTION_REFUSED</h2>
+        <p> I set up Internet Information Services (IIS) on my Windows machine, eager to serve a simple index.html file. I type <a href="http://localhost">http://localhost</a> into my browser, hit Enter, and... "This page can't be reached. localhost refused to connect. ERR_CONNECTION_REFUSED." Cue the frustration!</p>
+        <p>I expected to see my beautifully crafted homepage, but instead, I was stuck troubleshooting. My journey to fix this taught me a lot about IIS, and I'm here to share it with you.</p>
+
+        <h2>What is IIS?</h2>
+        <p>Internet Information Services (IIS) is Microsoft’s web server software built into Windows. It’s like a digital concierge, serving web pages, files, or apps to browsers when they request them.</p>
+        <ul>
+            <li><strong>Purpose:</strong> Hosts websites, web applications, or APIs.</li>
+            <li><strong>Environment:</strong> Runs on Windows servers or local PCs for development.</li>
+            <li><strong>Strengths:</strong> Integrates with Microsoft technologies like ASP.NET, easy to set up, and secure.</li>
+        </ul>
+
+        <h2>Why IIS ?</h2>
+        <p>IIS is a go-to for:</p>
+        <ul>
+            <li><strong>Hosting:</strong> Serve static HTML or dynamic web apps.</li>
+            <li><strong>Testing:</strong> Develop and test websites locally.</li>
+            <li><strong>Security:</strong> Offers SSL and authentication features.</li>
+            <li><strong>Scalability:</strong> Supports everything from personal blogs to enterprise sites.</li>
+        </ul>
+
+        <h2>Understanding IIS!</h2>
+        <p>Imagine you’re an IT admin tasked with building a network monitoring dashboard to track server performance and traffic. You develop a web app with a homepage (<code>index.html</code>) showing real-time metrics and a detailed analytics page built with ASP.NET. Using IIS, you turn your Windows PC into a web server to test this dashboard locally:</p>
+        <ol>
+            <li>You save your dashboard files in <code>C:\inetpub\wwwroot</code>.</li>
+            <li>You configure IIS Manager to serve <code>index.html</code> at <a href="http://localhost">http://localhost</a>.</li>
+            <li>You test the dashboard in your browser, fine-tuning the graphs and alerts.</li>
+        </ol>
+        <p>Once your dashboard is polished, you deploy it to a public IIS server (e.g., on a Windows Server in the cloud) to make it accessible to your IT team at <code>monitor.mycompany.com</code>. This example shows IIS as a tool that transforms your computer into a web server for development or production, especially for Microsoft-based web applications.</p>
+        <p>That’s what I aimed to do with my simple site, but IIS threw me a curveball!</p>
+
+        <h2>Errors Faced During IIS Troubleshooting</h2>
+        <p>Here’s how I tackled the errors I faced:</p>
+
+        <h3>Issue 1: Wrong Page Served by IIS</h3>
+        <p>IIS uses a “Default Document” list to pick which file to show at <a href="http://localhost">http://localhost</a>. My <code>index.html</code> was there, but <code>iisstart.html</code> was higher up, taking priority.</p>
+        <p><strong>Fix:</strong></p>
+        <ul>
+            <li>Opened IIS Manager (<code>inetmgr</code>).</li>
+            <li>Navigated to <code>Sites > Default Web Site</code>.</li>
+            <li>Double-clicked <code>Default Document</code>.</li>
+            <li>Moved <code>index.html</code> to the top using “Move Up.”</li>
+            <li>Ran <code>iisreset</code> in Command Prompt (as admin).</li>
+        </ul>
+
+        <h3>Issue 2: Facing ERR_CONNECTION_REFUSED</h3>
+        <p>Even after fixing the default document, I got <code>ERR_CONNECTION_REFUSED</code>. I ran diagnostics to check connectivity and port status:</p>
+        <pre><code>C:\Users\shang>ping localhost
+Pinging ShangariChandramohan [::1] with 32 bytes of data:
+Reply from ::1: time<1ms
+Reply from ::1: time<1ms
+Reply from ::1: time<1ms
+Reply from ::1: time<1ms
+</code></pre>
+        <p>This showed localhost resolved to IPv6 (<code>::1</code>). Next, I checked port 80:</p>
+        <pre><code>C:\Windows\System32>netstat -an | find ":80"
+  TCP    0.0.0.0:80             0.0.0.0:0              LISTENING
+  TCP    [::]:80                [::]:0                 LISTENING
+</code></pre>
+        <p>This confirmed IIS was listening on port 80 for both IPv4 and IPv6. So why wouldn’t it connect? I tried these steps:</p>
+        <ul>
+            <li><strong>Site Status:</strong> In IIS Manager, verified “Default Web Site” was started (Actions > Start).</li>
+            <li><strong>Bindings:</strong> Checked “Bindings” to ensure <code>http</code> on port 80 for “All Unassigned” IPs.</li>
+            <li><strong>Permissions:</strong> Gave <code>IUSR</code> read access to <code>C:\inetpub\wwwroot\index.html</code> (Properties > Security > Add > IUSR > Read & execute).</li>
+            <li><strong>Firewall:</strong> Ensured “World Wide Web Services (HTTP)” was allowed in Windows Defender Firewall.</li>
+            <li><strong>App Pool:</strong> Recycled <code>DefaultAppPool</code> in IIS Manager (Application Pools > DefaultAppPool > Recycle).</li>
+            <li><strong>Restart:</strong> Ran <code>iisreset</code> multiple times to refresh IIS.</li>
+        </ul>
+        <p>I tested <a href="http://127.0.0.1">http://127.0.0.1</a>, <a href="http://localhost">http://localhost</a>, and <a href="http://[::1]">http://[::1]</a>. After fixing permissions and restarting IIS, my <code>index.html</code> finally appeared!</p>
+
+        <h2>Key Takeaways from My IIS Journey</h2>
+        <p>This IIS saga taught me:</p>
+        <ul>
+            <li><strong>Default Documents:</strong> <code>index.html</code> must be at the top of the list.</li>
+            <li><strong>Permissions:</strong> <code>IUSR</code> needs read access to files.</li>
+            <li><strong>Port 80:</strong> Verify it’s open with <code>netstat -an | find ":80"</code>.</li>
+            <li><strong>Bindings:</strong> Ensure port 80 is configured correctly.</li>
+            <li><strong>Persistence:</strong> Keep running <code>iisreset</code> and checking settings.</li>
+        </ul>
+
+        <h2>Kickstart Your IIS Web Hosting</h2>
+        <p>Want to try IIS? Create an <code>index.html</code>, save it in <code>C:\inetpub\wwwroot</code>, and configure IIS Manager. Use <code>netstat -an | find ":80"</code> to check port 80, run <code>iisreset</code>, and visit <a href="http://localhost">http://localhost</a>. You’ll be hosting in no time!</p>
+        <p>Hit a snag? I’ve been there. Share your experience, and let’s debug together!</p>
+
+        <hr>
+        <p class="footer"><em>Powered by experience. Delivered with clarity.</em></p>
+    </div>
+</body>
+</html>
